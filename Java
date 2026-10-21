@@ -1,0 +1,85 @@
+
+'use strict';
+
+const poems = [
+  {
+    text: "古池や\n蛙飛びこむ\n水の音",
+    author: "松尾芭蕉"
+  },
+  {
+    text: "柿くへば\n鐘が鳴るなり\n法隆寺",
+    author: "正岡子規"
+  },
+  {
+    text: "菜の花や\n月は東に\n日は西に",
+    author: "与謝蕪村"
+  },
+  {
+    text: "閑さや\n岩にしみ入る\n蝉の声",
+    author: "松尾芭蕉"
+  },
+  {
+    text: "春の海\nひねもすのたり\nのたりかな",
+    author: "与謝蕪村"
+  },
+  {
+    text: "五月雨を\nあつめて早し\n最上川",
+    author: "松尾芭蕉"
+  },
+  {
+    text: "名月を\n取ってくれろと\n泣く子かな",
+    author: "小林一茶"
+  },
+  {
+    text: "秋深き\n隣は何を\nする人ぞ",
+    author: "松尾芭蕉"
+  },
+  {
+    text: "痩蛙\nまけるな一茶\n是にあり",
+    author: "小林一茶"
+  },
+  {
+    text: "夏草や\n兵どもが\n夢の跡",
+    author: "松尾芭蕉"
+  }
+];
+
+const extras = [
+  "それでも宵谷チトセは可愛い（字余り）",
+  "それはともかく宵谷チトセは今日もメロい（字余り）",
+  "そんなときにも響くチトセの美声（字余り）"
+];
+
+function draw() {
+  const poem =
+    poems[Math.floor(Math.random() * poems.length)];
+
+  const extra =
+    extras[Math.floor(Math.random() * extras.length)];
+
+  const authorName =
+    document.getElementById('authorName').value.trim();
+
+  document.getElementById('haiku').textContent =
+    poem.text;
+
+  document.getElementById('author').textContent =
+    '— ' + (authorName || poem.author);
+
+  document.getElementById('extra').textContent =
+    extra;
+
+  const result = document.getElementById('result');
+
+  result.classList.remove('show');
+  void result.offsetWidth;
+  result.classList.add('show');
+}
+
+document.getElementById('draw')
+  .addEventListener('click', draw);
+
+document.getElementById('authorName')
+  .addEventListener('keydown', e => {
+    if (e.key === 'Enter') draw();
+  });
